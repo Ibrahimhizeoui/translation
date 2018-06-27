@@ -43,8 +43,8 @@ public class TranslationController {
 	}
 	
 	@RequestMapping(value ="/{origin}", method = RequestMethod.GET)
-	public Translation getOneTranslatoin(@RequestParam(value="lang", required=true) String key, @PathVariable String origin) {
-		return translatervice.getTranslation(origin, key) ;
+	public String getOneTranslatoin(@RequestParam(value="lang", required=true) String key, @PathVariable String origin) {
+		return translatervice.getTranslation(origin, key).getTranslated() ;
 	}
 	
 	@RequestMapping(value ="/all/{origin}", method = RequestMethod.GET)
@@ -52,5 +52,8 @@ public class TranslationController {
 		return translatervice.getAllByOrigin(origin) ;
 	}
 	
-	
+	@RequestMapping(value ="/{id}", method = RequestMethod.DELETE)
+	public void deleteTranslation(@PathVariable int id) {
+		translatervice.deleteTranslation(id);
+	}
 }

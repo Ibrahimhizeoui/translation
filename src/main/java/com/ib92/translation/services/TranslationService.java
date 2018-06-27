@@ -31,4 +31,8 @@ public class TranslationService {
 		return translationRepository.findByOrigin(origin);
     }
 	
+	public void deleteTranslation(int id) {
+		this.translationRepository.deleteById(id);
+	}
+	
 }
