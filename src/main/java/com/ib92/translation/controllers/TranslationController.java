@@ -30,7 +30,7 @@ public class TranslationController {
 	private KeyService keyService;
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Object> addTask(@RequestBody Translation translation){
+	public ResponseEntity<Object> addTranslation(@RequestBody Translation translation){
 		Translation savedTranslation = this.translatervice.saveTranslation(translation);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(savedTranslation.getId()).toUri();
@@ -47,14 +47,14 @@ public class TranslationController {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@RequestMapping(value ="/{origin}", method = RequestMethod.GET)
-	public String getOneTranslatoin(@RequestParam(value="lang", required=true) String key, @PathVariable String origin) {
-		return translatervice.getTranslation(origin, key).getTranslated() ;
+	@RequestMapping(value ="/{key}", method = RequestMethod.GET)
+	public String getOneTranslatoin(@RequestParam(value="lang", required=true) String langid, @PathVariable String key) {
+		return translatervice.getTranslation(langid, key).getTranslated() ;
 	}
 	
-	@RequestMapping(value ="/all/{origin}", method = RequestMethod.GET)
-	public List<Translation> getAllByOrigin(@PathVariable String origin) {
-		return translatervice.getAllByOrigin(origin) ;
+	@RequestMapping(value ="/all/{key}", method = RequestMethod.GET)
+	public List<Translation> getAllByKey(@PathVariable String key) {
+		return translatervice.getAllByKey(key);
 	}
 	
 	@RequestMapping(value ="/{id}", method = RequestMethod.DELETE)
@@ -62,7 +62,7 @@ public class TranslationController {
 		translatervice.deleteTranslation(id);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value ="/keys", method = RequestMethod.POST)
 	public ResponseEntity<Object> addKey(@RequestBody Key k){
 		Key savedKey = this.keyService.saveKey(k);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")

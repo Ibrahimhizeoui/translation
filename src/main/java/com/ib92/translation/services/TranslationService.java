@@ -19,16 +19,16 @@ public class TranslationService {
 		return translationRepository.save(t);
     }
 	
-	public Translation getTranslation(String origin, String key) {
-		return translationRepository.findByOriginAndKey(origin, key);
+	public Translation getTranslation(String langid, String key) {
+		return translationRepository.findByLangidAndKey(langid, key);
     }
 	
 	public Optional<Translation> getTranslationById(int id) {
 		return translationRepository.findById(id);
     }
 	
-	public List<Translation> getAllByOrigin(String origin) {
-		return translationRepository.findByOrigin(origin);
+	public List<Translation> getAllByKey(String key) {
+		return translationRepository.findByKey(key);
     }
 	
 	public void deleteTranslation(int id) {

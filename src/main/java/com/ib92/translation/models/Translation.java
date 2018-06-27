@@ -14,7 +14,7 @@ public class Translation {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String key;
-	private String origin;
+	private String langid;
 	private String translated;
 	
 	public Translation() {}
@@ -31,12 +31,15 @@ public class Translation {
 	public void setKey(String key) {
 		this.key = key;
 	}
-	public String getOrigin() {
-		return origin;
+	
+	public String getLangid() {
+		return langid;
 	}
-	public void setOrigin(String origin) {
-		this.origin = origin;
+
+	public void setLangid(String langid) {
+		this.langid = langid;
 	}
+
 	public String getTranslated() {
 		return translated;
 	}

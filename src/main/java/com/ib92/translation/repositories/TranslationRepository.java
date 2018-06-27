@@ -11,6 +11,6 @@ import com.ib92.translation.models.Translation;
 @Repository
 public interface TranslationRepository extends JpaRepository<Translation,Integer>{
 	Optional<Translation> findById(int id);
-	Translation findByOriginAndKey(String origin, String key);
-	List<Translation> findByOrigin(String origin);
+	Translation findByLangidAndKey(String langid, String key);
+	List<Translation> findByKey(String key);
 }
