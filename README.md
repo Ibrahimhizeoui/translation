@@ -1,9 +1,6 @@
 # Translation Web Service
 
 This API is built according to RESTful principles, which means it uses HTTP as an application protocol. It's based on Spring Boot.  The app allows to the client to translate words.
-  - Type some Markdown on the left
-  - See HTML in the right
-  - Magic
 
 ## Installation:
 
