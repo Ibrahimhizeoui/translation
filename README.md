@@ -34,4 +34,6 @@ Make sure that you have java and maven already installed in you machine
 | POST | http://localhost:8083/translate | (Translation) t |
 | PUT |  http://localhost:8083/translate/{id} | (Translation) t |
 | DELETE | http://localhost:8083/translate/{id} |  |
+| GET |  http://localhost:8083/translate/keys |  |
+| DELETE | http://localhost:8083/translate/keys |(key)k  |
 
