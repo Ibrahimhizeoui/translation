@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.ib92.translation.models.Key;
 import com.ib92.translation.models.Translation;
+import com.ib92.translation.services.KeyService;
 import com.ib92.translation.services.TranslationService;
 
 @RequestMapping("/translate")
@@ -23,6 +25,9 @@ public class TranslationController {
 
 	@Autowired
 	private TranslationService translatervice;
+	
+	@Autowired
+	private KeyService keyService;
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Object> addTask(@RequestBody Translation translation){
@@ -56,4 +61,19 @@ public class TranslationController {
 	public void deleteTranslation(@PathVariable int id) {
 		translatervice.deleteTranslation(id);
 	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Object> addKey(@RequestBody Key k){
+		Key savedKey = this.keyService.saveKey(k);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(savedKey.getId()).toUri();
+
+		return ResponseEntity.created(location).build();
+	}
+	
+	@RequestMapping(value ="/keys", method = RequestMethod.GET)
+	public List<Key> getAllKeys() {
+		return keyService.getAllKeys() ;
+	}
+	
 }
